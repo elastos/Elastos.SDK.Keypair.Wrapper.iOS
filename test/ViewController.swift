@@ -16,7 +16,8 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    //ElastosWallet.
+    let pubKey = "111"
+    let _ = ElastosWallet.GetAddress(publicKey: pubKey)
   }
 
 

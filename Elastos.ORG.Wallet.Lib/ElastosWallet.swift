@@ -9,7 +9,7 @@
 public final class ElastosWallet  {
   private init() {}
   
-  static func GenerateMnemonic(language: String, path: String) -> String? {
+  public static func GenerateMnemonic(language: String, path: String) -> String? {
     let languagePtr = String.ToUnsafeMutablePointer(data: language)
     let pathPtr = String.ToUnsafeMutablePointer(data: path)
     
@@ -20,7 +20,7 @@ public final class ElastosWallet  {
     return mnemonic
   }
   
-  static func GetAddress(publicKey: String) -> String? {
+  public static func GetAddress(publicKey: String) -> String? {
     let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
     
     let addressPtr = getAddress(pubKeyPtr)
@@ -30,7 +30,7 @@ public final class ElastosWallet  {
     return address
   }
   
-  static func GetPublicKey(privateKey: String) -> String? {
+  public static func GetPublicKey(privateKey: String) -> String? {
     let privKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
     
     let pubKeyPtr = getPublicKey(privKeyPtr)
@@ -40,7 +40,7 @@ public final class ElastosWallet  {
     return pubKey
   }
   
-  static func GetMasterPrivateKey(mmemonic: String, language: String,
+  public static func GetMasterPrivateKey(mmemonic: String, language: String,
                                   path: String, password: String) -> String? {
     let mmemonicPtr = String.ToUnsafeMutablePointer(data: mmemonic)
     let languagePtr = String.ToUnsafeMutablePointer(data: language)
@@ -55,7 +55,7 @@ public final class ElastosWallet  {
     return privKey
   }
   
-  static func GenerateRawTransaction(transaction: String) -> String? {
+  public static func GenerateRawTransaction(transaction: String) -> String? {
     let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
     
     let rawTxPtr = generateRawTransaction(transactionPtr)
