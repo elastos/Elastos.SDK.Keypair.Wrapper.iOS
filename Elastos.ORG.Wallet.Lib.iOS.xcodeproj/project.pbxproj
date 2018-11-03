@@ -8,12 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		DED52562218DF4C800619F59 /* Elastos_ORG_Wallet_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = DED52560218DF4C800619F59 /* Elastos_ORG_Wallet_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		DEDB2487218DF5F300F07F42 /* Elastos.ORG.Wallet.Lib.iOS-Bridging-Header.h in Headers */ = {isa = PBXBuildFile; fileRef = DEDB2484218DF5F200F07F42 /* Elastos.ORG.Wallet.Lib.iOS-Bridging-Header.h */; };
 		DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2485218DF5F200F07F42 /* StringExtension.swift */; };
 		DEDB2489218DF5F300F07F42 /* ElastosWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2486218DF5F200F07F42 /* ElastosWallet.swift */; };
 		DEDB248D218DF66900F07F42 /* Elastos.Wallet.Utility.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDB248B218DF66900F07F42 /* Elastos.Wallet.Utility.framework */; };
 		DEDB248E218DF66900F07F42 /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DEDB248C218DF66900F07F42 /* openssl.framework */; };
+		DEDB2496218DF71C00F07F42 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2495218DF71C00F07F42 /* AppDelegate.swift */; };
+		DEDB2498218DF71C00F07F42 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2497218DF71C00F07F42 /* ViewController.swift */; };
+		DEDB249B218DF71C00F07F42 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB2499218DF71C00F07F42 /* Main.storyboard */; };
+		DEDB249D218DF71D00F07F42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DEDB249C218DF71D00F07F42 /* Assets.xcassets */; };
+		DEDB24A0218DF71D00F07F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB249E218DF71D00F07F42 /* LaunchScreen.storyboard */; };
+		DEDB24A7218DF76100F07F42 /* ElastosWallet.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEDB2486218DF5F200F07F42 /* ElastosWallet.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DEDB24A5218DF73A00F07F42 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DED52554218DF4C800619F59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DED5255C218DF4C800619F59;
+			remoteInfo = Elastos.ORG.Wallet.Lib.iOS;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		DED5255D218DF4C800619F59 /* Elastos_ORG_Wallet_Lib_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elastos_ORG_Wallet_Lib_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -24,6 +39,13 @@
 		DEDB2486218DF5F200F07F42 /* ElastosWallet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElastosWallet.swift; sourceTree = "<group>"; };
 		DEDB248B218DF66900F07F42 /* Elastos.Wallet.Utility.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Elastos.Wallet.Utility.framework; path = frameworks/Elastos.Wallet.Utility.framework; sourceTree = "<group>"; };
 		DEDB248C218DF66900F07F42 /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = openssl.framework; path = frameworks/openssl.framework; sourceTree = "<group>"; };
+		DEDB2493218DF71C00F07F42 /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DEDB2495218DF71C00F07F42 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DEDB2497218DF71C00F07F42 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DEDB249A218DF71C00F07F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		DEDB249C218DF71D00F07F42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DEDB249F218DF71D00F07F42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DEDB24A1218DF71D00F07F42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +58,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEDB2490218DF71C00F07F42 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -43,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				DED5255F218DF4C800619F59 /* Elastos.ORG.Wallet.Lib */,
+				DEDB2494218DF71C00F07F42 /* test */,
 				DED5255E218DF4C800619F59 /* Products */,
 				DEDB248A218DF66900F07F42 /* Frameworks */,
 			);
@@ -52,6 +82,7 @@
 			isa = PBXGroup;
 			children = (
 				DED5255D218DF4C800619F59 /* Elastos_ORG_Wallet_Lib_iOS.framework */,
+				DEDB2493218DF71C00F07F42 /* test.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,6 +108,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DEDB2494218DF71C00F07F42 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				DEDB2495218DF71C00F07F42 /* AppDelegate.swift */,
+				DEDB2497218DF71C00F07F42 /* ViewController.swift */,
+				DEDB2499218DF71C00F07F42 /* Main.storyboard */,
+				DEDB249C218DF71D00F07F42 /* Assets.xcassets */,
+				DEDB249E218DF71D00F07F42 /* LaunchScreen.storyboard */,
+				DEDB24A1218DF71D00F07F42 /* Info.plist */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -85,7 +129,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DED52562218DF4C800619F59 /* Elastos_ORG_Wallet_Lib.h in Headers */,
-				DEDB2487218DF5F300F07F42 /* Elastos.ORG.Wallet.Lib.iOS-Bridging-Header.h in Headers */,
+				DEDB24A7218DF76100F07F42 /* ElastosWallet.swift in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,18 +154,40 @@
 			productReference = DED5255D218DF4C800619F59 /* Elastos_ORG_Wallet_Lib_iOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		DEDB2492218DF71C00F07F42 /* test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DEDB24A2218DF71D00F07F42 /* Build configuration list for PBXNativeTarget "test" */;
+			buildPhases = (
+				DEDB248F218DF71C00F07F42 /* Sources */,
+				DEDB2490218DF71C00F07F42 /* Frameworks */,
+				DEDB2491218DF71C00F07F42 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DEDB24A6218DF73A00F07F42 /* PBXTargetDependency */,
+			);
+			name = test;
+			productName = test;
+			productReference = DEDB2493218DF71C00F07F42 /* test.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		DED52554218DF4C800619F59 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = Elastos;
 				TargetAttributes = {
 					DED5255C218DF4C800619F59 = {
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
+					};
+					DEDB2492218DF71C00F07F42 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -131,6 +197,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = DED52553218DF4C800619F59;
 			productRefGroup = DED5255E218DF4C800619F59 /* Products */;
@@ -138,6 +205,7 @@
 			projectRoot = "";
 			targets = (
 				DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.iOS */,
+				DEDB2492218DF71C00F07F42 /* test */,
 			);
 		};
 /* End PBXProject section */
@@ -147,6 +215,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DEDB2491218DF71C00F07F42 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEDB24A0218DF71D00F07F42 /* LaunchScreen.storyboard in Resources */,
+				DEDB249D218DF71D00F07F42 /* Assets.xcassets in Resources */,
+				DEDB249B218DF71C00F07F42 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,7 +240,43 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DEDB248F218DF71C00F07F42 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DEDB2498218DF71C00F07F42 /* ViewController.swift in Sources */,
+				DEDB2496218DF71C00F07F42 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DEDB24A6218DF73A00F07F42 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.iOS */;
+			targetProxy = DEDB24A5218DF73A00F07F42 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DEDB2499218DF71C00F07F42 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEDB249A218DF71C00F07F42 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		DEDB249E218DF71D00F07F42 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DEDB249F218DF71D00F07F42 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		DED52563218DF4C800619F59 /* Debug */ = {
@@ -352,6 +466,42 @@
 			};
 			name = Release;
 		};
+		DEDB24A3218DF71D00F07F42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LFU7T9UYL5;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.elastos.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DEDB24A4218DF71D00F07F42 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = LFU7T9UYL5;
+				INFOPLIST_FILE = test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = org.elastos.test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -369,6 +519,15 @@
 			buildConfigurations = (
 				DED52566218DF4C800619F59 /* Debug */,
 				DED52567218DF4C800619F59 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DEDB24A2218DF71D00F07F42 /* Build configuration list for PBXNativeTarget "test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DEDB24A3218DF71D00F07F42 /* Debug */,
+				DEDB24A4218DF71D00F07F42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
