@@ -6,7 +6,7 @@
 //  Copyright © 2018 Elastos. All rights reserved.
 //
 
-public final class ElastosWallet  {
+public final class ElastosWalletKit  {
   private init() {}
   
   public static func GenerateMnemonic(language: String, path: String) -> String? {
