@@ -20,16 +20,6 @@
 		DEDB24A0218DF71D00F07F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB249E218DF71D00F07F42 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		DE3300EF218E783D00B22FCB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DED52554218DF4C800619F59 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DED5255C218DF4C800619F59;
-			remoteInfo = Elastos.ORG.Wallet.Lib.iOS;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		DEB1DBFF218E0A6700824003 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -149,9 +139,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.iOS */ = {
+		DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DED52565218DF4C800619F59 /* Build configuration list for PBXNativeTarget "Elastos.ORG.Wallet.Lib.iOS" */;
+			buildConfigurationList = DED52565218DF4C800619F59 /* Build configuration list for PBXNativeTarget "Elastos.ORG.Wallet.Lib" */;
 			buildPhases = (
 				DED52558218DF4C800619F59 /* Headers */,
 				DED52559218DF4C800619F59 /* Sources */,
@@ -162,7 +152,7 @@
 			);
 			dependencies = (
 			);
-			name = Elastos.ORG.Wallet.Lib.iOS;
+			name = Elastos.ORG.Wallet.Lib;
 			productName = Elastos.ORG.Wallet.Lib;
 			productReference = DED5255D218DF4C800619F59 /* ElastosWalletLib.framework */;
 			productType = "com.apple.product-type.framework";
@@ -179,7 +169,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				DE3300F0218E783D00B22FCB /* PBXTargetDependency */,
 			);
 			name = test;
 			productName = test;
@@ -218,7 +207,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.iOS */,
+				DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib */,
 				DEDB2492218DF71C00F07F42 /* test */,
 			);
 		};
@@ -264,14 +253,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		DE3300F0218E783D00B22FCB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.iOS */;
-			targetProxy = DE3300EF218E783D00B22FCB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DEDB2499218DF71C00F07F42 /* Main.storyboard */ = {
@@ -430,9 +411,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = Elastos.ORG.Wallet.Lib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -446,6 +429,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Debug;
 		};
@@ -464,9 +448,11 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/frameworks",
+					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = Elastos.ORG.Wallet.Lib/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -479,6 +465,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Elastos.ORG.Wallet.Lib/Elastos.ORG.Wallet.Lib.iOS-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 arm64e";
 			};
 			name = Release;
 		};
@@ -494,6 +481,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -517,6 +505,7 @@
 					"$(PROJECT_DIR)/build/Release-iphoneos",
 				);
 				INFOPLIST_FILE = test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -540,7 +529,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DED52565218DF4C800619F59 /* Build configuration list for PBXNativeTarget "Elastos.ORG.Wallet.Lib.iOS" */ = {
+		DED52565218DF4C800619F59 /* Build configuration list for PBXNativeTarget "Elastos.ORG.Wallet.Lib" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DED52566218DF4C800619F59 /* Debug */,
