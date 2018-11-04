@@ -8,7 +8,7 @@
 
 import UIKit
 
-import ElastosWalletLib
+import ElastosWalletKit
 
 class ViewController: UIViewController {
 
