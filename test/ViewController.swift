@@ -16,9 +16,19 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     // Do any additional setup after loading the view, typically from a nib.
     
-    let mmemonic = ElastosWalletKit.GenerateMnemonic(language: "english", path: "")
+    let mnemonic = ElastosWalletKit.GenerateMnemonic(language: "english", words: "")
     
-    let privKey = ElastosWalletKit.GetMasterPrivateKey(mmemonic: mmemonic!, language: "english", path: "", password: "0")
+    var seed = Data()
+    let seedLen = ElastosWalletKit.GetSeedFromMnemonic(seed: &seed,
+                                                       mnemonic: mnemonic!, language: "english", words: "",
+                                                       mnemonicPassword: "")
+    
+    let privKey = ElastosWalletKit.GetSinglePrivateKey(seed: seed, seedLen: seedLen)
+    
+    let pubKey = ElastosWalletKit.GetSinglePublicKey(seed: seed, seedLen: seedLen)
+    
+    
+    let a = 0
   }
 
 

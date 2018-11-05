@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		DE3300EE218E780400B22FCB /* ElastosWalletKit.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEDB2486218DF5F200F07F42 /* ElastosWalletKit.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DE7520D6219046AE0092C06D /* ElastosWalletKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* ElastosWalletKit.framework */; };
+		DE7520D7219046AE0092C06D /* ElastosWalletKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* ElastosWalletKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DED52562218DF4C800619F59 /* Elastos_ORG_Wallet_Lib.h in Headers */ = {isa = PBXBuildFile; fileRef = DED52560218DF4C800619F59 /* Elastos_ORG_Wallet_Lib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2485218DF5F200F07F42 /* StringExtension.swift */; };
 		DEDB2489218DF5F300F07F42 /* ElastosWalletKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2486218DF5F200F07F42 /* ElastosWalletKit.swift */; };
@@ -20,6 +22,16 @@
 		DEDB24A0218DF71D00F07F42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DEDB249E218DF71D00F07F42 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DE7520D4219046640092C06D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DED52554218DF4C800619F59 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DED5255C218DF4C800619F59;
+			remoteInfo = Elastos.ORG.Wallet.Lib;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		DEB1DBFF218E0A6700824003 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -27,6 +39,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DE7520D7219046AE0092C06D /* ElastosWalletKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE7520D6219046AE0092C06D /* ElastosWalletKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +183,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				DE7520D5219046640092C06D /* PBXTargetDependency */,
 			);
 			name = test;
 			productName = test;
@@ -253,6 +268,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DE7520D5219046640092C06D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DED5255C218DF4C800619F59 /* Elastos.ORG.Wallet.Lib */;
+			targetProxy = DE7520D4219046640092C06D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		DEDB2499218DF71C00F07F42 /* Main.storyboard */ = {
@@ -472,6 +495,7 @@
 		DEDB24A3218DF71D00F07F42 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LFU7T9UYL5;
@@ -496,6 +520,7 @@
 		DEDB24A4218DF71D00F07F42 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LFU7T9UYL5;
