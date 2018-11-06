@@ -11,10 +11,15 @@ import Foundation
 extension String {
   static func ToUnsafeMutablePointer(data: String?) -> UnsafeMutablePointer<Int8>? {
     guard data != nil else { return nil }
-    var dataCString = data!.utf8CString
-    return dataCString.withUnsafeMutableBytes { d in
-      return d.baseAddress!.bindMemory(to: Int8.self, capacity: d.count)
-    }
+    
+    let dataBuf = data!.data(using: String.Encoding.utf8, allowLossyConversion: false)
+    let unsafePointer = UnsafeMutablePointer<UInt8>.allocate(capacity: dataBuf!.count + 1)
+    unsafePointer.initialize(repeating: 0, count: dataBuf!.count + 1)
+    dataBuf!.copyBytes(to: unsafePointer, count: dataBuf!.count)
+    
+    let opaquePtr = OpaquePointer(unsafePointer)
+    
+    return UnsafeMutablePointer<Int8>(opaquePtr)
   }
   static func FromUnsafeMutablePointer(data: UnsafeMutablePointer<Int8>?) -> String? {
     guard data != nil else { return nil }
@@ -29,9 +34,10 @@ extension Data {
     let unsafePointer = UnsafeMutablePointer<UInt8>.allocate(capacity: data!.count)
     unsafePointer.initialize(repeating: 0, count: data!.count) // is this necessary?
     data!.copyBytes(to: unsafePointer, count: data!.count)
-    let unsafeRawPointer = unsafePointer.deinitialize(count: data!.count)
-
-    return unsafeRawPointer
+    
+    let opaquePtr = OpaquePointer(unsafePointer)
+    
+    return UnsafeMutableRawPointer(opaquePtr)
   }
   static func FromUnsafeMutablePointer(data: UnsafeMutableRawPointer?, size: Int) -> Data? {
     guard data != nil else { return nil }

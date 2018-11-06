@@ -11,7 +11,9 @@ import Foundation
 open class ElastosWalletKit  {
   private init() {}
   
-  public static func GetSinglePublicKey(seed: Data, seedLen: Int) -> String? {
+  
+  public static func GetSinglePublicKey(seed: Data?, seedLen: Int) -> String? {
+    guard seed != nil else { return nil }
     let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
 
     let pubKeyPtr = getSinglePublicKey(seedPtr, Int32(seedLen))
@@ -21,7 +23,8 @@ open class ElastosWalletKit  {
     return pubKey
   }
   
-  public static func GetSinglePrivateKey(seed: Data, seedLen: Int) -> String? {
+  public static func GetSinglePrivateKey(seed: Data?, seedLen: Int) -> String? {
+    guard seed != nil else { return nil }
     let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
 
     let privKeyPtr = getSinglePrivateKey(seedPtr, Int32(seedLen))
@@ -31,8 +34,9 @@ open class ElastosWalletKit  {
     return privKey
   }
   
-  public static func GetMasterPublicKey(seed: Data, seedLen: Int,
+  public static func GetMasterPublicKey(seed: Data?, seedLen: Int,
                                         coinType: Int32) -> Data? {
+    guard seed != nil else { return nil }
     let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
 
     let masterPubKeyPtr = getMasterPublicKey(seedPtr, Int32(seedLen), coinType)
@@ -43,7 +47,8 @@ open class ElastosWalletKit  {
     return masterPubKey
   }
   
-  public static func GetAddress(publicKey: String) -> String? {
+  public static func GetAddress(publicKey: String?) -> String? {
+    guard publicKey != nil else { return nil }
     let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
     
     let addressPtr = getAddress(pubKeyPtr)
@@ -53,7 +58,7 @@ open class ElastosWalletKit  {
     return address
   }
 
-  public static func GenerateMnemonic(language: String, words: String) -> String? {
+  public static func GenerateMnemonic(language: String, words: String?) -> String? {
     let languagePtr = String.ToUnsafeMutablePointer(data: language)
     let wordsPtr = String.ToUnsafeMutablePointer(data: words)
     
@@ -65,9 +70,11 @@ open class ElastosWalletKit  {
   }
 
   public static func GetSeedFromMnemonic(seed: inout Data,
-                                         mnemonic: String,
-                                         language: String, words: String,
+                                         mnemonic: String?,
+                                         language: String, words: String?,
                                          mnemonicPassword: String) -> Int {
+    guard mnemonic != nil else { return -1 }
+    
     let mnemonicPtr = String.ToUnsafeMutablePointer(data: mnemonic)
     let languagePtr = String.ToUnsafeMutablePointer(data: language)
     let wordsPtr = String.ToUnsafeMutablePointer(data: words)
@@ -79,19 +86,22 @@ open class ElastosWalletKit  {
       return Int(seedLen)
     }
     
-    let seedData = Data.FromUnsafeMutablePointer(data: seedPtr!, size: Int(seedLen))
+    let seedData = Data.FromUnsafeMutablePointer(data: seedPtr, size: Int(seedLen))
     freeBuf(seedPtr)
+    
+    let seedStr = seedData?.base64EncodedString()
+    print( "======================" + seedStr! )
     
     seed.removeAll()
     seed.append(seedData!)
     
     return Int(seedLen)
   }
+
   
-  
-  
-  
-  public static func GetPublicKeyFromPrivateKey(privateKey: String) -> String? {
+  public static func GetPublicKeyFromPrivateKey(privateKey: String?) -> String? {
+    guard privateKey != nil else { return nil }
+    
     let privKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
     
     let pubKeyPtr = getPublicKeyFromPrivateKey(privKeyPtr)
@@ -100,6 +110,31 @@ open class ElastosWalletKit  {
     
     return pubKey
   }
+  
+  public static func Sign(privateKey: String?, data: Data, len: Int, signedData: inout Data) -> Int {
+    guard privateKey != nil else { return -1 }
+    
+    let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+    let dataPtr = Data.ToUnsafeMutablePointer(data: data)
+    
+    var signedDataPtr: UnsafeMutableRawPointer? = nil
+    let signedDataLen = sign(privateKeyPtr, dataPtr, Int32(len), &signedDataPtr)
+    guard signedDataLen > 0 && signedDataPtr != nil else {
+      return Int(signedDataLen)
+    }
+    
+    let signedDataData = Data.FromUnsafeMutablePointer(data: signedDataPtr!, size: Int(signedDataLen))
+    freeBuf(signedDataPtr)
+    
+    signedData.removeAll()
+    signedData.append(signedDataData!)
+    
+    return Int(signedDataLen)
+  }
+    
+  
+  
+  
   
   public static func GetMasterPrivateKey(mmemonic: String, language: String,
                                   path: String, password: String) -> String? {
