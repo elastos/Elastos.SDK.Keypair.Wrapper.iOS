@@ -153,6 +153,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DED52565218DF4C800619F59 /* Build configuration list for PBXNativeTarget "lib" */;
 			buildPhases = (
+				DE5982ED21D37E8F00998AEF /* ShellScript */,
 				DED52558218DF4C800619F59 /* Headers */,
 				DED52559218DF4C800619F59 /* Sources */,
 				DED5255A218DF4C800619F59 /* Frameworks */,
@@ -243,6 +244,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DE5982ED21D37E8F00998AEF /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Building depends libraries...\";\n./scripts/build-depends.sh;\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DED52559218DF4C800619F59 /* Sources */ = {
