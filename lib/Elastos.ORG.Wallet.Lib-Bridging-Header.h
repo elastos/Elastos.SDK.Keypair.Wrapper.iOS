@@ -6,5 +6,5 @@
 //  Copyright © 2018 Elastos. All rights reserved.
 //
 
-#import "Elastos.ORG.Wallet.Lib.C/Elastos.Wallet.Utility.h"
+#import "AbstractLayer/AbstractLayer.hpp"
 

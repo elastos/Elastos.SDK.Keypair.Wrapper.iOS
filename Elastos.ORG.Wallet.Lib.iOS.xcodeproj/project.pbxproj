@@ -11,6 +11,9 @@
 		DE52CF0621915A9C002C2177 /* Elastos.ORG.Wallet.Lib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.framework */; };
 		DE52CF0721915A9C002C2177 /* Elastos.ORG.Wallet.Lib.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE9DA3AE21C505B6002E9E1A /* Elastos.ORG.Wallet.Lib.C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE9DA3AD21C505B5002E9E1A /* Elastos.ORG.Wallet.Lib.C.framework */; };
+		DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */; };
+		DED323E421D5E8D000A24E15 /* AbstractLayer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */; };
+		DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED323E521D5E94300A24E15 /* AbstractLayer.swift */; };
 		DED52562218DF4C800619F59 /* ElastosORGWalletLib.h in Headers */ = {isa = PBXBuildFile; fileRef = DED52560218DF4C800619F59 /* ElastosORGWalletLib.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2485218DF5F200F07F42 /* StringExtension.swift */; };
 		DEDB2489218DF5F300F07F42 /* ElastosWalletKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEDB2486218DF5F200F07F42 /* ElastosWalletKit.swift */; };
@@ -47,6 +50,9 @@
 
 /* Begin PBXFileReference section */
 		DE9DA3AD21C505B5002E9E1A /* Elastos.ORG.Wallet.Lib.C.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Elastos.ORG.Wallet.Lib.C.framework; path = frameworks/Elastos.ORG.Wallet.Lib.C.framework; sourceTree = "<group>"; };
+		DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractLayer.cpp; sourceTree = "<group>"; };
+		DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AbstractLayer.hpp; sourceTree = "<group>"; };
+		DED323E521D5E94300A24E15 /* AbstractLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLayer.swift; sourceTree = "<group>"; };
 		DED5255D218DF4C800619F59 /* Elastos.ORG.Wallet.Lib.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Elastos.ORG.Wallet.Lib.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DED52560218DF4C800619F59 /* ElastosORGWalletLib.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ElastosORGWalletLib.h; sourceTree = "<group>"; };
 		DED52561218DF4C800619F59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,6 +88,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DED323E021D5E8C200A24E15 /* AbstractLayer */ = {
+			isa = PBXGroup;
+			children = (
+				DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */,
+				DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */,
+				DED323E521D5E94300A24E15 /* AbstractLayer.swift */,
+			);
+			path = AbstractLayer;
+			sourceTree = "<group>";
+		};
 		DED52553218DF4C800619F59 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +120,7 @@
 		DED5255F218DF4C800619F59 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				DED323E021D5E8C200A24E15 /* AbstractLayer */,
 				DEDB2484218DF5F200F07F42 /* Elastos.ORG.Wallet.Lib-Bridging-Header.h */,
 				DEDB2486218DF5F200F07F42 /* ElastosWalletKit.swift */,
 				DEDB2485218DF5F200F07F42 /* StringExtension.swift */,
@@ -141,6 +158,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DED323E421D5E8D000A24E15 /* AbstractLayer.hpp in Headers */,
 				DE3300EE218E780400B22FCB /* ElastosWalletKit.swift in Headers */,
 				DED52562218DF4C800619F59 /* ElastosORGWalletLib.h in Headers */,
 			);
@@ -272,7 +290,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DEDB2489218DF5F300F07F42 /* ElastosWalletKit.swift in Sources */,
+				DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */,
 				DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */,
+				DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
