@@ -23,6 +23,8 @@ char* AbstractLayer_GetSinglePublicKey(const void* seed, int seedLen);
 
 char* AbstractLayer_GetSinglePrivateKey(const void* seed, int seedLen);
 
+char* AbstractLayer_GetPublicKeyFromPrivateKey(const char* privateKey);
+  
 char* AbstractLayer_GetAddress(const char* publicKey);
 
 bool AbstractLayer_IsAddressValid(const char* address);

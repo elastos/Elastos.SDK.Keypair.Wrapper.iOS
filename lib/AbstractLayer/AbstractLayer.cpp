@@ -38,6 +38,12 @@ char* AbstractLayer_GetSinglePrivateKey(const void* seed, int seedLen)
 	return privkey;
 }
 
+char* AbstractLayer_GetPublicKeyFromPrivateKey(const char* privateKey)
+{
+  char* pubkey = getPublicKeyFromPrivateKey(privateKey);
+  return pubkey;
+}
+
 char* AbstractLayer_GetAddress(const char* publicKey)
 {
 	char* address = getAddress(publicKey);

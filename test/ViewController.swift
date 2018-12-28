@@ -8,7 +8,7 @@
 
 import UIKit
 
-import ElastosWalletKit
+import Elastos_ORG_Wallet_Lib
 
 class ViewController: UIViewController {
 
@@ -31,7 +31,7 @@ class ViewController: UIViewController {
     
     let pubKey = ElastosWalletKit.GetSinglePublicKey(seed: seed, seedLen: seedLen)
     
-    let pubKeyVerify = ElastosWalletKit.GetPublicKeyFromPrivateKey(privateKey: privKey)
+    //let pubKeyVerify = ElastosWalletKit.GetPublicKeyFromPrivateKey(privateKey: privKey)
     
     let address = ElastosWalletKit.GetAddress(publicKey: pubKey)
     

@@ -22,6 +22,11 @@ open class ElastosWalletKit  {
     return privKey
   }
   
+  public static func GetPublicKeyFromPrivateKey(privateKey: String?) -> String? {
+    let pubKey = AbstractLayer.GetPublicKeyFromPrivateKey(privateKey: privateKey)
+    return pubKey
+  }
+  
   public static func GetAddress(publicKey: String?) -> String? {
     let address = AbstractLayer.GetAddress(publicKey: publicKey)
     return address
