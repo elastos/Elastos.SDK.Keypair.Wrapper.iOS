@@ -97,6 +97,17 @@ open class AbstractLayer {
       return address
   }
 
+  public static func GetDid(publicKey: String?) -> String? {
+    guard publicKey != nil else { return nil }
+    let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
+    
+    let didPtr = AbstractLayer_GetDid(pubKeyPtr)
+    let did = String.FromUnsafeMutablePointer(data: didPtr)
+    AbstractLayer_FreeBuf(didPtr)
+    
+    return did
+  }
+  
   public static func Sign(privateKey: String?, data: Data, len: Int, signedData: inout Data) -> Int {
     guard privateKey != nil else { return -1 }
 

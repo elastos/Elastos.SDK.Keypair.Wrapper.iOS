@@ -32,6 +32,11 @@ open class ElastosWalletKit  {
     return address
   }
 
+  public static func GetDid(publicKey: String?) -> String? {
+    let address = AbstractLayer.GetDid(publicKey: publicKey)
+    return address
+  }
+  
   public static func GenerateMnemonic(language: String, words: String?) -> String? {
     let mnemonic = AbstractLayer.GenerateMnemonic(language: language, words: words)
     return mnemonic
@@ -63,4 +68,5 @@ open class ElastosWalletKit  {
     return rawTx
   }
 
+  
 }
