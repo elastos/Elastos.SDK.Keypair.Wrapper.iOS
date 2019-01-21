@@ -7,7 +7,7 @@ SCRIPT_DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd);
 PROJECT_DIR=$(dirname "${SCRIPT_DIR}");
 BUILD_NAME="$PROJECT_DIR/build";
 
-PROJECT_NAME="ElastosOrgWalletLib";
+PROJECT_NAME="ElastosSdkKeypair";
 PROJECT_BUILDTYPE="Release";
 PROJECT_REVISION="$(git rev-list --count HEAD)";
 PROJECT_VERSION="v0.1.$PROJECT_REVISION";
