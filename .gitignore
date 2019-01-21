@@ -3,3 +3,4 @@ frameworks
 project.xcworkspace
 xcshareddata
 xcuserdata
+.DS_Store

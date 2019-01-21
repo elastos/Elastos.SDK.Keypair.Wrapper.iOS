@@ -1,5 +1,5 @@
 //
-//  ElastosWallet.swift
+//  ElastosKeypair.swift
 //  lib
 //
 //  Created by mengxk on 2018/11/3.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-open class ElastosWalletKit  {
+open class ElastosKeypair  {
   private init() {}
   
   

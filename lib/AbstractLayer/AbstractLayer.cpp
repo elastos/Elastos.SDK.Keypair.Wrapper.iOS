@@ -8,7 +8,7 @@
 
 #include "AbstractLayer.hpp"
 
-#include <Elastos.SDK.Keypair/Elastos.Wallet.Utility.h>
+#include <Elastos.SDK.Keypair.C/Elastos.Wallet.Utility.h>
 
 char* AbstractLayer_GenerateMnemonic(const char* language, const char* words)
 {
