@@ -11,9 +11,9 @@ git -C "$PROJECT_DIR" submodule init;
 git -C "$PROJECT_DIR" submodule update;
 
 export PACKAGE_PLATFORM=iOS;
-"$DEPENDS_DIR/Elastos.ORG.Wallet.Lib.C/scripts/package-mobile.sh";
+"$DEPENDS_DIR/Elastos.SDK.Keypair.C/scripts/package-mobile.sh";
 
 rm -rf "$PROJECT_DIR/frameworks";
 mkdir "$PROJECT_DIR/frameworks";
 
-cp -rv "$DEPENDS_DIR/Elastos.ORG.Wallet.Lib.C/build/package/Elastos.ORG.Wallet.Lib.C.framework" "$PROJECT_DIR/frameworks";
+cp -rv "$DEPENDS_DIR/Elastos.SDK.Keypair.C/build/package/Elastos.SDK.Keypair.C.framework" "$PROJECT_DIR/frameworks";
