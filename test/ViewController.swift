@@ -10,13 +10,13 @@ import UIKit
 
 import ElastosSdkKeypair
 
-class ViewController: UIViewController {
+class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate {
 
     let listArray = ["get Mnemonic","get single priv","get publickey","get address","Sign","verrify","getDid"]
-
-    @IBOutlet weak var UITableView: UITableView!
-
-
+  
+    var strSign = ""
+    @IBOutlet weak var tabview: UITableView!
+    
     let mnemonic = Utility.GenerateMnemonic(language: "zh")
 
     var privKey : String {
@@ -65,54 +65,73 @@ class ViewController: UIViewController {
     
     super.viewDidLoad()
     
+    //for print
     print("Mnemonic : " + mnemonic)
     print("privKey : " + privKey)
     print("pubKey : " + pubKey)
     print("address : " + address)
-    
-    var strSign = "sign :"
+
+    strSign = ""
     for item in sign {
         strSign += String(format:"%02x",item)
     }
     print(strSign)
-    
     print("verify : " + String(verify))
     print("Did : " + Did)
     
-    
-// Do any additional setup after loading the view, typically from a nib.
-    
-//    var mnemonic = ElastosKeypair.GenerateMnemonic(language: "english", words: "")
-//    mnemonic = "hobby theme load okay village inhale garlic box cement draft patrol net"
-//
-//    var seed = Data()
-//    let seedLen = ElastosKeypair.GetSeedFromMnemonic(seed: &seed,
-//                                                       mnemonic: mnemonic, language: "english", words: "",
-//                                                       mnemonicPassword: "")
-//
-//    let seedStr = seed.hexEncodedString()
-//
-//
-//    let privKey = ElastosKeypair.GetSinglePrivateKey(seed: seed, seedLen: seedLen)
-//
-//    let pubKey = ElastosKeypair.GetSinglePublicKey(seed: seed, seedLen: seedLen)
-//
-//    //let pubKeyVerify = ElastosKeypair.GetPublicKeyFromPrivateKey(privateKey: privKey)
-//
-//    let address = ElastosKeypair.GetAddress(publicKey: pubKey)
-//
-//
-//    let txStr = "{\"Transactions\":[{\"Fee\":100,\"UTXOInputs\":[{\"index\":1,\"txid\":\"0bed4adf9be2a503d7f077db31a42b2d740db73d75fc3813166e6e5be304ca13\",\"privateKey\":\"1fc3ebc259dd12d444184da98e8447943926d026526fd8dd5d558a9353fd3bbc\",\"address\":\"EbAATdrW7gaomFY3SAy81rokqwqKA3EXbT\"}],\"Outputs\":[{\"amount\":10000,\"address\":\"EMHc9JSpxKWbTMf8gQDcWm7Tz1C5nQNA8Z\"},{\"amount\":48735988890,\"address\":\"EbAATdrW7gaomFY3SAy81rokqwqKA3EXbT\"}]}]}"
-//
-//    let signedData = ElastosKeypair.GenerateRawTransaction(transaction: txStr)
-//
-//
-//
-//    let a = 0
-
+    //for show list
+    tabview.delegate = self
+    tabview.dataSource = self
     
     }
 
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return listArray.count
+    }
+    
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = UITableViewCell.init(style: UITableViewCell.CellStyle.default, reuseIdentifier: "cellid")
+        cell.textLabel?.text = listArray[indexPath.row]
+        return cell
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        var str = ""
+        switch indexPath.row {
+        case 0:
+            str = mnemonic
+        case 1:
+            str = privKey
+        case 2:
+            str = pubKey
+        case 3:
+            str = address
+        case 4:
+            str = strSign
+        case 5:
+            str = String(verify)
+        case 6:
+            str = Did
+        default:
+            str = ""
+        }
+        
+        
+        let alertController = UIAlertController(title: "",
+                                                message: str, preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        
+        alertController.addAction(cancelAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    
 
 }
 
