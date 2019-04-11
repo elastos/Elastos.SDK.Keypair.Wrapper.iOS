@@ -67,6 +67,18 @@ open class ElastosKeypair  {
     let rawTx = AbstractLayer.GenerateRawTransaction(transaction: transaction)
     return rawTx
   }
+    
+  public static func Verify(publicKey: String?, data: Data, len: Int, signedData:Data,signedLen:Int) -> Bool {
+        
+        
+        let verifyResult = AbstractLayer.Verify(publicKey: publicKey,
+                                                data: data,
+                                                len: len,
+                                                signedData: signedData,
+                                                signedLen: signedLen)
+        
+        return verifyResult
+  }
 
   
 }

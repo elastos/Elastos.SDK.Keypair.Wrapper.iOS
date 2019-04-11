@@ -138,4 +138,21 @@ open class AbstractLayer {
 
       return rawTx
   }
+    
+  public static func Verify(publicKey: String?, data: Data, len: Int, signedData:Data,signedLen:Int) -> Bool {
+        
+        guard publicKey != nil else { return false }
+        let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
+        let dataPtr = Data.ToUnsafeMutablePointer(data: data)
+        let signedDataPtr = Data.ToUnsafeMutablePointer(data: signedData)
+        
+        let signedResult = AbstractLayer_Verify(publicKey, dataPtr, Int32(len), signedDataPtr,Int32(signedLen))
+        
+        AbstractLayer_FreeBuf(pubKeyPtr)
+        AbstractLayer_FreeBuf(dataPtr)
+        AbstractLayer_FreeBuf(signedDataPtr)
+        
+        return Bool(signedResult)
+        
+  }
 }
