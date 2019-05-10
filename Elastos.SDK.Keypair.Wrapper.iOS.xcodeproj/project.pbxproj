@@ -15,6 +15,10 @@
 		DEBD58D222854684006FD464 /* ElastosKeypairDID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D122854684006FD464 /* ElastosKeypairDID.swift */; };
 		DEBD58D422854696006FD464 /* ElastosKeypairSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D322854696006FD464 /* ElastosKeypairSign.swift */; };
 		DEBD58D6228546A8006FD464 /* ElastosKeypairHD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D5228546A8006FD464 /* ElastosKeypairHD.swift */; };
+		DEBD58D722857072006FD464 /* ElastosKeypairCrypto.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEBD58CF2285466E006FD464 /* ElastosKeypairCrypto.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEBD58D822857072006FD464 /* ElastosKeypairDID.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEBD58D122854684006FD464 /* ElastosKeypairDID.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEBD58D922857072006FD464 /* ElastosKeypairSign.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEBD58D322854696006FD464 /* ElastosKeypairSign.swift */; settings = {ATTRIBUTES = (Public, ); }; };
+		DEBD58DA22857072006FD464 /* ElastosKeypairHD.swift in Headers */ = {isa = PBXBuildFile; fileRef = DEBD58D5228546A8006FD464 /* ElastosKeypairHD.swift */; settings = {ATTRIBUTES = (Public, ); }; };
 		DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */; };
 		DED323E421D5E8D000A24E15 /* AbstractLayer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
 		DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED323E521D5E94300A24E15 /* AbstractLayer.swift */; };
@@ -171,6 +175,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DED52562218DF4C800619F59 /* Elastos.SDK.Keypair.h in Headers */,
+				DEBD58D722857072006FD464 /* ElastosKeypairCrypto.swift in Headers */,
+				DEBD58D822857072006FD464 /* ElastosKeypairDID.swift in Headers */,
+				DEBD58D922857072006FD464 /* ElastosKeypairSign.swift in Headers */,
+				DEBD58DA22857072006FD464 /* ElastosKeypairHD.swift in Headers */,
 				DED323E421D5E8D000A24E15 /* AbstractLayer.hpp in Headers */,
 				DE3300EE218E780400B22FCB /* ElastosKeypair.swift in Headers */,
 			);
@@ -301,13 +309,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DEDB2489218DF5F300F07F42 /* ElastosKeypair.swift in Sources */,
 				DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */,
+				DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */,
 				DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */,
+				DEDB2489218DF5F300F07F42 /* ElastosKeypair.swift in Sources */,
 				DEBD58D222854684006FD464 /* ElastosKeypairDID.swift in Sources */,
 				DEBD58D02285466E006FD464 /* ElastosKeypairCrypto.swift in Sources */,
 				DEBD58D6228546A8006FD464 /* ElastosKeypairHD.swift in Sources */,
-				DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */,
 				DEBD58D422854696006FD464 /* ElastosKeypairSign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
