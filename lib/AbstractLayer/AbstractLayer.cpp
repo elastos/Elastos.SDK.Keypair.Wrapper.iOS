@@ -82,6 +82,25 @@ char* AbstractLayer_GenerateRawTransaction(const char* transaction)
 	return rawTx;
 }
 
+char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen)
+{
+  char** ret = getSignedSigners(transaction, outLen);
+  return ret;
+}
+
+char* AbstractLayer_EciesEncrypt(const char* publicKey, const char* plainText)
+{
+  char* ret = eciesEncrypt(publicKey, plainText);
+  return ret;
+}
+
+char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText)
+{
+  int len;
+  char* ret = eciesDecrypt(privateKey, cipherText, &len);
+  return ret;
+}
+
 void AbstractLayer_FreeBuf(void* buf)
 {
 	freeBuf(buf);

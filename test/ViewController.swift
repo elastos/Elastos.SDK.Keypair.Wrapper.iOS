@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     let seedStr = seed.hexEncodedString()
     
     
-    let privKey = ElastosKeypair.GetSinglePrivateKey(seed: seed, seedLen: seedLen)
+    let privKey = ElastosKeypair.GetSinglePrivateKey(seed: seed, seedLen: seedLen)!
     
     let pubKey = ElastosKeypair.GetSinglePublicKey(seed: seed, seedLen: seedLen)
     
@@ -40,7 +40,12 @@ class ViewController: UIViewController {
     
     let signedData = ElastosKeypair.GenerateRawTransaction(transaction: txStr)
     
+    //ElastosKeypair.GetSignedSigners(transaction: <#T##String#>, outLen: &<#T##Int32#>)
     
+    let originText = "Hello World!!!"
+    let cipherText = ElastosKeypair.EciesEncrypt(publicKey: pubKey!, plainText: originText)
+    let plainText = ElastosKeypair.EciesDecrypt(privateKey: privKey, cipherText: cipherText!)
+    assert(originText == plainText)
     
     let a = 0
   }

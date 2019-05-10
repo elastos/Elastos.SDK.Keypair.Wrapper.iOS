@@ -37,6 +37,12 @@ bool AbstractLayer_Verify(const char* publicKey, const void* data, int len, cons
 
 char* AbstractLayer_GenerateRawTransaction(const char* transaction);
 
+char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen);
+
+char* AbstractLayer_EciesEncrypt(const char* publicKey, const char* plainText);
+
+char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText);
+
 void AbstractLayer_FreeBuf(void* buf);
 
 #ifdef __cplusplus

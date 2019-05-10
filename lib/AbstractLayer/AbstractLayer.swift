@@ -153,6 +153,34 @@ open class AbstractLayer {
         AbstractLayer_FreeBuf(signedDataPtr)
         
         return Bool(signedResult)
-        
+  }
+
+  public static func GetSignedSigners(transaction: String, outLen: inout Int32) -> [String]? {
+    let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
+    let outLenPtr = UnsafeMutablePointer<Int32>.allocate(capacity: 1)
+    outLenPtr.pointee = outLen
+    let signerArrayPtr = AbstractLayer_GetSignedSigners(transactionPtr, outLenPtr)
+    let signerArray = String.FromUnsafeMutablePointer(data: signerArrayPtr)
+    outLen = outLenPtr.pointee
+   
+    return signerArray
+  }
+  
+  public static func EciesEncrypt(publicKey: String, plainText: String) -> String? {
+    let publicKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
+    let plainTextPtr = String.ToUnsafeMutablePointer(data: plainText)
+    let retPtr = AbstractLayer_EciesEncrypt(publicKeyPtr, plainTextPtr)
+    let ret = String.FromUnsafeMutablePointer(data: retPtr)
+
+    return ret
+  }
+  
+  public static func EciesDecrypt(privateKey: String, cipherText: String) -> String? {
+    let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+    let cipherTextPtr = String.ToUnsafeMutablePointer(data: cipherText)
+    let retPtr = AbstractLayer_EciesDecrypt(privateKeyPtr, cipherTextPtr)
+    let ret = String.FromUnsafeMutablePointer(data: retPtr)
+    
+    return ret
   }
 }

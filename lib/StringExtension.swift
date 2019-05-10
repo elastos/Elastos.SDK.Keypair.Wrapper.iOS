@@ -25,6 +25,17 @@ extension String {
     guard data != nil else { return nil }
     return String(cString: data!)
   }
+  
+  static func FromUnsafeMutablePointer(data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>?) -> [String]? {
+    guard data != nil else { return nil }
+    var ptr = data!
+    var strArray: [String] = []
+    while let s = ptr.pointee {
+      strArray.append(String(cString: s))
+      ptr += 1
+    }
+    return strArray
+  }
 }
 
 extension Data {

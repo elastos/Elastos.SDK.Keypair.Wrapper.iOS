@@ -80,5 +80,18 @@ open class ElastosKeypair  {
         return verifyResult
   }
 
+  public static func GetSignedSigners(transaction: String, outLen: inout Int32) -> [String]? {
+    let signerArray = AbstractLayer.GetSignedSigners(transaction: transaction, outLen: &outLen)
+    return signerArray
+  }
   
+  public static func EciesEncrypt(publicKey: String, plainText: String) -> String? {
+    let cipherText = AbstractLayer.EciesEncrypt(publicKey: publicKey, plainText: plainText)
+    return cipherText
+  }
+  
+  public static func EciesDecrypt(privateKey: String, cipherText: String) -> String? {
+    let plainText = AbstractLayer.EciesDecrypt(privateKey: privateKey, cipherText: cipherText)
+    return plainText
+  }
 }
