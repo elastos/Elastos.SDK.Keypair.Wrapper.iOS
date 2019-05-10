@@ -9,6 +9,7 @@
 #include "AbstractLayer.hpp"
 
 #include <Elastos.SDK.Keypair.C/Elastos.Wallet.Utility.h>
+#include <memory>
 
 char* AbstractLayer_GenerateMnemonic(const char* language, const char* words)
 {
@@ -82,6 +83,48 @@ char* AbstractLayer_GenerateRawTransaction(const char* transaction)
 	return rawTx;
 }
 
+void* AbstractLayer_GetMasterPublicKey(const void* seed, int seedLen, int coinType,
+                                       int* masterPubKeyLen)
+{
+  MasterPublicKey* masterPubKey = getMasterPublicKey(seed, seedLen, coinType);
+  *masterPubKeyLen = sizeof(MasterPublicKey);
+  return masterPubKey;
+}
+
+char* AbstractLayer_GenerateSubPrivateKey(const void* seed, int seedLen, int coinType,
+                                          int chain, int index)
+{
+  char* subPrivKey = generateSubPrivateKey(seed, seedLen, coinType, chain, index);
+  return subPrivKey;
+}
+
+char* AbstractLayer_GenerateSubPublicKey(const void* masterPublicKey, int chain, int index)
+{
+  char * subPubKey = generateSubPublicKey(reinterpret_cast<const MasterPublicKey *>(masterPublicKey),
+                                          chain, index);
+  return subPubKey;
+}
+
+char* AbstractLayer_GetMultiSignAddress(char** publicKeys, int length, int requiredSignCount)
+{
+  char* address = getMultiSignAddress(publicKeys, length, requiredSignCount);
+  return address;
+}
+
+char* AbstractLayer_MultiSignTransaction(const char* privateKey, char** publicKeys,
+                                         int length, int requiredSignCount,
+                                         const char* transaction)
+{
+  char* multiSignTx = multiSignTransaction(privateKey, publicKeys, length, requiredSignCount, transaction);
+  return multiSignTx;
+}
+
+char* AbstractLayer_SerializeMultiSignTransaction(const char* transaction)
+{
+  char* ret = serializeMultiSignTransaction(transaction);
+  return ret;
+}
+
 char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen)
 {
   char** ret = getSignedSigners(transaction, outLen);
@@ -104,4 +147,9 @@ char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText)
 void AbstractLayer_FreeBuf(void* buf)
 {
 	freeBuf(buf);
+}
+
+void AbstractLayer_FreeStringArray(char** buf)
+{
+  free(buf);
 }

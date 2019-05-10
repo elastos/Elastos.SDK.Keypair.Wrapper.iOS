@@ -26,12 +26,26 @@ extension String {
     return String(cString: data!)
   }
   
-  static func FromUnsafeMutablePointer(data: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>?) -> [String]? {
-    guard data != nil else { return nil }
-    var ptr = data!
+  static func ToUnsafeMutablePointer(array: [String]?) -> UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>? {
+    guard array != nil else { return nil }
+    
+    let unsafePointer = UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>.allocate(capacity: array!.count)
+    unsafePointer.initialize(repeating: nil, count: array!.count)
+    var ptr = unsafePointer
+    for idx in 0..<array!.count {
+      ptr.pointee = ToUnsafeMutablePointer(data: array![idx])
+      ptr += 1
+    }
+    
+    return unsafePointer
+  }
+  static func FromUnsafeMutablePointer(array: UnsafeMutablePointer<UnsafeMutablePointer<Int8>?>?,
+                                       len: Int) -> [String]? {
+    guard array != nil else { return nil }
+    var ptr = array!
     var strArray: [String] = []
-    while let s = ptr.pointee {
-      strArray.append(String(cString: s))
+    for _ in 0..<len {
+      strArray.append(String(cString: (ptr.pointee ?? nil)!))
       ptr += 1
     }
     return strArray

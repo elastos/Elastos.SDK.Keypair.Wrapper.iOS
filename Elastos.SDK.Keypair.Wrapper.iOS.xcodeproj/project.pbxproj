@@ -11,6 +11,10 @@
 		DE38CF6821F5BD1700639F6B /* Elastos.SDK.Keypair.C.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE38CF6721F5BD1700639F6B /* Elastos.SDK.Keypair.C.framework */; };
 		DE52CF0621915A9C002C2177 /* ElastosSdkKeypair.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* ElastosSdkKeypair.framework */; };
 		DE52CF0721915A9C002C2177 /* ElastosSdkKeypair.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DED5255D218DF4C800619F59 /* ElastosSdkKeypair.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DEBD58D02285466E006FD464 /* ElastosKeypairCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58CF2285466E006FD464 /* ElastosKeypairCrypto.swift */; };
+		DEBD58D222854684006FD464 /* ElastosKeypairDID.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D122854684006FD464 /* ElastosKeypairDID.swift */; };
+		DEBD58D422854696006FD464 /* ElastosKeypairSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D322854696006FD464 /* ElastosKeypairSign.swift */; };
+		DEBD58D6228546A8006FD464 /* ElastosKeypairHD.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEBD58D5228546A8006FD464 /* ElastosKeypairHD.swift */; };
 		DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */; };
 		DED323E421D5E8D000A24E15 /* AbstractLayer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */; settings = {ATTRIBUTES = (Private, ); }; };
 		DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DED323E521D5E94300A24E15 /* AbstractLayer.swift */; };
@@ -50,6 +54,10 @@
 
 /* Begin PBXFileReference section */
 		DE38CF6721F5BD1700639F6B /* Elastos.SDK.Keypair.C.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Elastos.SDK.Keypair.C.framework; path = frameworks/Elastos.SDK.Keypair.C.framework; sourceTree = "<group>"; };
+		DEBD58CF2285466E006FD464 /* ElastosKeypairCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElastosKeypairCrypto.swift; sourceTree = "<group>"; };
+		DEBD58D122854684006FD464 /* ElastosKeypairDID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElastosKeypairDID.swift; sourceTree = "<group>"; };
+		DEBD58D322854696006FD464 /* ElastosKeypairSign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElastosKeypairSign.swift; sourceTree = "<group>"; };
+		DEBD58D5228546A8006FD464 /* ElastosKeypairHD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElastosKeypairHD.swift; sourceTree = "<group>"; };
 		DED323E121D5E8D000A24E15 /* AbstractLayer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AbstractLayer.cpp; sourceTree = "<group>"; };
 		DED323E221D5E8D000A24E15 /* AbstractLayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AbstractLayer.hpp; sourceTree = "<group>"; };
 		DED323E521D5E94300A24E15 /* AbstractLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLayer.swift; sourceTree = "<group>"; };
@@ -123,6 +131,10 @@
 				DED323E021D5E8C200A24E15 /* AbstractLayer */,
 				DEDB2484218DF5F200F07F42 /* Elastos.SDK.Keypair-Bridging-Header.h */,
 				DEDB2486218DF5F200F07F42 /* ElastosKeypair.swift */,
+				DEBD58CF2285466E006FD464 /* ElastosKeypairCrypto.swift */,
+				DEBD58D122854684006FD464 /* ElastosKeypairDID.swift */,
+				DEBD58D322854696006FD464 /* ElastosKeypairSign.swift */,
+				DEBD58D5228546A8006FD464 /* ElastosKeypairHD.swift */,
 				DEDB2485218DF5F200F07F42 /* StringExtension.swift */,
 				DED52560218DF4C800619F59 /* Elastos.SDK.Keypair.h */,
 				DED52561218DF4C800619F59 /* Info.plist */,
@@ -292,7 +304,11 @@
 				DEDB2489218DF5F300F07F42 /* ElastosKeypair.swift in Sources */,
 				DED323E321D5E8D000A24E15 /* AbstractLayer.cpp in Sources */,
 				DEDB2488218DF5F300F07F42 /* StringExtension.swift in Sources */,
+				DEBD58D222854684006FD464 /* ElastosKeypairDID.swift in Sources */,
+				DEBD58D02285466E006FD464 /* ElastosKeypairCrypto.swift in Sources */,
+				DEBD58D6228546A8006FD464 /* ElastosKeypairHD.swift in Sources */,
 				DED323E621D5E94300A24E15 /* AbstractLayer.swift in Sources */,
+				DEBD58D422854696006FD464 /* ElastosKeypairSign.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

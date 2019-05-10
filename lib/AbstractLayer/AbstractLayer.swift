@@ -97,6 +97,15 @@ open class AbstractLayer {
       return address
   }
 
+  public static func IsAddressValid(address: String?) -> Bool {
+    guard address != nil else { return false }
+    let addressPtr = String.ToUnsafeMutablePointer(data: address)
+    
+    let validPtr = AbstractLayer_IsAddressValid(addressPtr)
+    
+    return validPtr
+  }
+  
   public static func GetDid(publicKey: String?) -> String? {
     guard publicKey != nil else { return nil }
     let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
@@ -129,12 +138,52 @@ open class AbstractLayer {
       return Int(signedDataLen)
   }
 
+  public static func GetMasterPublicKey(seed: Data?, seedLen: Int32, coinType: Int32, masterPubKeyLen: inout Int32) -> Data? {
+    guard seed != nil else { return nil }
+    let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
+    
+    let masterPubKeyPtr = AbstractLayer_GetMasterPublicKey(seedPtr, seedLen, coinType,
+                                                           &masterPubKeyLen)
+    
+    let masterPubKey = Data.FromUnsafeMutablePointer(data: masterPubKeyPtr, size: Int(masterPubKeyLen))
+    AbstractLayer_FreeBuf(masterPubKeyPtr)
+    
+    return masterPubKey
+  }
+  
+  public static func GenerateSubPrivateKey(seed: Data?, seedLen: Int32,
+                                           coinType: Int32, chain: Int32, index: Int32) -> String? {
+    guard seed != nil else { return nil }
+    let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
+    
+    let subPrivKeyPtr = AbstractLayer_GenerateSubPrivateKey(seedPtr, seedLen, coinType, chain, index)
+    
+    let subPrivKey = String.FromUnsafeMutablePointer(data: subPrivKeyPtr)
+    AbstractLayer_FreeBuf(subPrivKeyPtr)
+
+    return subPrivKey
+  }
+  
+  public static func GenerateSubPublicKey(masterPublicKey: Data?, chain: Int32, index: Int32) -> String?
+  {
+    guard masterPublicKey != nil else { return nil }
+    let masterPublicKeyPtr = Data.ToUnsafeMutablePointer(data: masterPublicKey)
+    
+    let subPubKeyPtr = AbstractLayer_GenerateSubPublicKey(masterPublicKeyPtr, chain, index)
+    
+    let subPubKey = String.FromUnsafeMutablePointer(data: subPubKeyPtr)
+    AbstractLayer_FreeBuf(subPubKeyPtr)
+    
+    return subPubKey
+  }
+  
   public static func GenerateRawTransaction(transaction: String) -> String? {
     let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
 
       let rawTxPtr = AbstractLayer_GenerateRawTransaction(transactionPtr)
 
       let rawTx = String.FromUnsafeMutablePointer(data: rawTxPtr)
+      AbstractLayer_FreeBuf(rawTxPtr)
 
       return rawTx
   }
@@ -155,22 +204,72 @@ open class AbstractLayer {
         return Bool(signedResult)
   }
 
+  public static func GetMultiSignAddress(publicKeys: [String]?, length: Int32,
+                                         requiredSignCount: Int32) -> String? {
+    let publicKeysPtr = String.ToUnsafeMutablePointer(array: publicKeys)
+    
+    let multiSignAddrPtr = AbstractLayer_GetMultiSignAddress(publicKeysPtr, length, requiredSignCount)
+    
+    let multiSignAddr = String.FromUnsafeMutablePointer(data: multiSignAddrPtr)
+    AbstractLayer_FreeBuf(multiSignAddrPtr)
+    
+    return multiSignAddr
+  }
+  
+  public static func MultiSignTransaction(privateKey: String, publicKeys: [String], length: Int32,
+                                          requiredSignCount: Int32,
+                                          transaction: String) -> String? {
+    let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+    let publicKeysPtr = String.ToUnsafeMutablePointer(array: publicKeys)
+    let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
+    
+    let multiSignTxPtr = AbstractLayer_MultiSignTransaction(privateKeyPtr, publicKeysPtr,
+                                                            length, requiredSignCount,
+                                                            transactionPtr)
+    
+    let multiSignTx = String.FromUnsafeMutablePointer(data: multiSignTxPtr)
+    AbstractLayer_FreeBuf(multiSignTxPtr)
+    
+    return multiSignTx
+  }
+  
+  public static func SerializeMultiSignTransaction(transaction: String) -> String? {
+    let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
+    
+    let retPtr = AbstractLayer_SerializeMultiSignTransaction(transactionPtr)
+    
+    let ret = String.FromUnsafeMutablePointer(data: retPtr)
+    AbstractLayer_FreeBuf(retPtr)
+    
+    return ret
+  }
+  
   public static func GetSignedSigners(transaction: String, outLen: inout Int32) -> [String]? {
     let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
-    let outLenPtr = UnsafeMutablePointer<Int32>.allocate(capacity: 1)
-    outLenPtr.pointee = outLen
-    let signerArrayPtr = AbstractLayer_GetSignedSigners(transactionPtr, outLenPtr)
-    let signerArray = String.FromUnsafeMutablePointer(data: signerArrayPtr)
-    outLen = outLenPtr.pointee
-   
+    
+    var signerArrayPtr = AbstractLayer_GetSignedSigners(transactionPtr, &outLen)
+    if(signerArrayPtr == nil) {
+      return nil
+    }
+    
+    let signerArray = String.FromUnsafeMutablePointer(array: signerArrayPtr, len: Int(outLen))
+    for _ in 0..<outLen {
+      AbstractLayer_FreeBuf(signerArrayPtr?.pointee)
+      signerArrayPtr? += 1
+    }
+    //AbstractLayer_FreeStringArray(signerArrayPtr) // TODO: memory leak
+    
     return signerArray
   }
   
   public static func EciesEncrypt(publicKey: String, plainText: String) -> String? {
     let publicKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
     let plainTextPtr = String.ToUnsafeMutablePointer(data: plainText)
+    
     let retPtr = AbstractLayer_EciesEncrypt(publicKeyPtr, plainTextPtr)
+    
     let ret = String.FromUnsafeMutablePointer(data: retPtr)
+    AbstractLayer_FreeBuf(retPtr)
 
     return ret
   }
@@ -178,8 +277,11 @@ open class AbstractLayer {
   public static func EciesDecrypt(privateKey: String, cipherText: String) -> String? {
     let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
     let cipherTextPtr = String.ToUnsafeMutablePointer(data: cipherText)
+    
     let retPtr = AbstractLayer_EciesDecrypt(privateKeyPtr, cipherTextPtr)
+    
     let ret = String.FromUnsafeMutablePointer(data: retPtr)
+    AbstractLayer_FreeBuf(retPtr)
     
     return ret
   }

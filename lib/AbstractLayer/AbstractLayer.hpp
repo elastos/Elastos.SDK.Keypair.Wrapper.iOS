@@ -37,6 +37,20 @@ bool AbstractLayer_Verify(const char* publicKey, const void* data, int len, cons
 
 char* AbstractLayer_GenerateRawTransaction(const char* transaction);
 
+void* AbstractLayer_GetMasterPublicKey(const void* seed, int seedLen, int coinType, int* masterPubKeyLen);
+
+char* AbstractLayer_GenerateSubPrivateKey(const void* seed, int seedLen, int coinType, int chain, int index);
+
+char* AbstractLayer_GenerateSubPublicKey(const void* masterPublicKey, int chain, int index);
+
+char* AbstractLayer_GetMultiSignAddress(char** publicKeys, int length, int requiredSignCount);
+  
+char* AbstractLayer_MultiSignTransaction(const char* privateKey, char** publicKeys,
+                                         int length, int requiredSignCount,
+                                         const char* transaction);
+
+char* AbstractLayer_SerializeMultiSignTransaction(const char* transaction);
+
 char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen);
 
 char* AbstractLayer_EciesEncrypt(const char* publicKey, const char* plainText);
@@ -45,6 +59,8 @@ char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText)
 
 void AbstractLayer_FreeBuf(void* buf);
 
+void AbstractLayer_FreeStringArray(char** buf);
+  
 #ifdef __cplusplus
 }
 #endif
