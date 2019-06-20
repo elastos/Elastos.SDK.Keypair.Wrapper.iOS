@@ -35,7 +35,7 @@ int AbstractLayer_Sign(const char* privateKey, const void* data, int len, void**
 
 bool AbstractLayer_Verify(const char* publicKey, const void* data, int len, const void* signedData, int signedLen);
 
-char* AbstractLayer_GenerateRawTransaction(const char* transaction);
+char* AbstractLayer_GenerateRawTransaction(const char* transaction, const char* assertId);
 
 void* AbstractLayer_GetMasterPublicKey(const void* seed, int seedLen, int coinType, int* masterPubKeyLen);
 

@@ -77,9 +77,9 @@ bool AbstractLayer_Verify(const char* publicKey, const void* data, int len,
 	return valid;
 }
 
-char* AbstractLayer_GenerateRawTransaction(const char* transaction)
+char* AbstractLayer_GenerateRawTransaction(const char* transaction, const char* assertId)
 {
-	char* rawTx = generateRawTransaction(transaction);
+	char* rawTx = generateRawTransaction(transaction, assertId);
 	return rawTx;
 }
 

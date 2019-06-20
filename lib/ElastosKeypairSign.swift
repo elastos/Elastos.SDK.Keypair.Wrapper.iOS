@@ -11,8 +11,8 @@ import Foundation
 open class ElastosKeypairSign {
   private init() {}
   
-  public static func GenerateRawTransaction(transaction: String) -> String? {
-    let rawTx = AbstractLayer.GenerateRawTransaction(transaction: transaction)
+  public static func GenerateRawTransaction(transaction: String, assertId: String? = nil) -> String? {
+    let rawTx = AbstractLayer.GenerateRawTransaction(transaction: transaction, assertId: assertId)
     return rawTx
   }
   

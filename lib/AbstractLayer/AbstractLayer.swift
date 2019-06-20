@@ -177,10 +177,11 @@ open class AbstractLayer {
     return subPubKey
   }
   
-  public static func GenerateRawTransaction(transaction: String) -> String? {
+  public static func GenerateRawTransaction(transaction: String, assertId: String? = nil) -> String? {
     let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
+    let assertIdPtr = String.ToUnsafeMutablePointer(data: assertId)
 
-      let rawTxPtr = AbstractLayer_GenerateRawTransaction(transactionPtr)
+      let rawTxPtr = AbstractLayer_GenerateRawTransaction(transactionPtr, assertIdPtr)
 
       let rawTx = String.FromUnsafeMutablePointer(data: rawTxPtr)
       AbstractLayer_FreeBuf(rawTxPtr)

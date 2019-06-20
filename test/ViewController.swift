@@ -116,6 +116,8 @@ func testSignTxData() {
   let rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction)
   print("rawTx: \(rawTx)")
   
+  rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction, assertId: nil)
+  
   print("============= end testSignTxData ===========")
 }
 
