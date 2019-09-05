@@ -42,8 +42,8 @@ open class AbstractLayer {
     let seedData = Data.FromUnsafeMutablePointer(data: seedPtr, size: Int(seedLen))
       AbstractLayer_FreeBuf(seedPtr)
 
-      let seedStr = seedData?.base64EncodedString()
-      print( "======================" + seedStr! )
+//      let seedStr = seedData?.base64EncodedString()
+//      print( "======================" + seedStr! )
 
       seed.removeAll()
       seed.append(seedData!)
