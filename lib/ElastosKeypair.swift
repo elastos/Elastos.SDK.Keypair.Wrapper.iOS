@@ -44,12 +44,9 @@ open class ElastosKeypair {
 
   public static func GetSeedFromMnemonic(seed: inout Data,
                                          mnemonic: String,
-                                         language: String, words: String?,
                                          mnemonicPassword: String) -> Int {
     let seedLen = AbstractLayer.GetSeedFromMnemonic(seed: &seed,
                                                     mnemonic: mnemonic,
-                                                    language: language,
-                                                    words: words,
                                                     mnemonicPassword: mnemonicPassword)
     return seedLen
   }

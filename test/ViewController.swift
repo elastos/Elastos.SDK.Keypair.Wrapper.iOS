@@ -35,7 +35,7 @@ func testGenrateMnemonic() -> Data? {
   
   var seed = Data()
   let seedLen = ElastosKeypair.GetSeedFromMnemonic(seed: &seed,
-                                                   mnemonic: mnemonic!, language: "english", words: "",
+                                                   mnemonic: mnemonic!,
                                                    mnemonicPassword: "")
   let seedStr = seed.hexEncodedString()
   print("seedStr: \(seedStr) seedLen: \(seedLen)")
@@ -113,7 +113,7 @@ func testSignTxData() {
                   + "\"index\":0,\"address\":\"EeniFrrhuFgQXRrQXsiM1V4Amdsk4vfkVc\"}],"
                   + "\"Outputs\":[{\"address\":\"EbxU18T3M9ufnrkRY7NLt6sKyckDW4VAsA\","
                   + "\"amount\":2000000}]}]}";
-  let rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction)
+  var rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction)
   print("rawTx: \(rawTx)")
   
   rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction, assertId: nil)

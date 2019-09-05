@@ -17,7 +17,7 @@ extern "C" {
 
 char* AbstractLayer_GenerateMnemonic(const char* language, const char* words);
 
-int AbstractLayer_GetSeedFromMnemonic(void** seed, const char* mnemonic, const char* language, const char* words, const char* mnemonicPassword);
+int AbstractLayer_GetSeedFromMnemonic(void** seed, const char* mnemonic, const char* mnemonicPassword);
 
 char* AbstractLayer_GetSinglePublicKey(const void* seed, int seedLen);
 

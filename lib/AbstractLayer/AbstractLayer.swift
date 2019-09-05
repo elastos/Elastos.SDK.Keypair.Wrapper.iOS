@@ -24,20 +24,17 @@ open class AbstractLayer {
 
   public static func GetSeedFromMnemonic(seed: inout Data,
       mnemonic: String?,
-      language: String, words: String?,
       mnemonicPassword: String) -> Int {
     guard mnemonic != nil else { return -1 }
 
     let mnemonicPtr = String.ToUnsafeMutablePointer(data: mnemonic)
-      let languagePtr = String.ToUnsafeMutablePointer(data: language)
-      let wordsPtr = String.ToUnsafeMutablePointer(data: words)
-      let mnemonicPasswordPtr = String.ToUnsafeMutablePointer(data: mnemonicPassword)
+    let mnemonicPasswordPtr = String.ToUnsafeMutablePointer(data: mnemonicPassword)
 
-      var seedPtr: UnsafeMutableRawPointer? = nil
-      let seedLen = AbstractLayer_GetSeedFromMnemonic(&seedPtr, mnemonicPtr, languagePtr, wordsPtr, mnemonicPasswordPtr)
-      guard seedLen > 0 && seedPtr != nil else {
-        return Int(seedLen)
-      }
+    var seedPtr: UnsafeMutableRawPointer? = nil
+    let seedLen = AbstractLayer_GetSeedFromMnemonic(&seedPtr, mnemonicPtr, mnemonicPasswordPtr)
+    guard seedLen > 0 && seedPtr != nil else {
+      return Int(seedLen)
+    }
 
     let seedData = Data.FromUnsafeMutablePointer(data: seedPtr, size: Int(seedLen))
       AbstractLayer_FreeBuf(seedPtr)
