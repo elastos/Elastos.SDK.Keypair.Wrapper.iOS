@@ -172,11 +172,12 @@ func testCrypto() {
   
   let originText = "Hello World!!!"
   print("originText: \(originText)")
-  let cipherText = ElastosKeypairCrypto.EciesEncrypt(publicKey: pubKey, plainText: originText)
+  let cipherText = ElastosKeypairCrypto.EciesEncrypt(publicKey: pubKey, plainText: originText.data(using: .utf8)!)
   print("cipherText: \(cipherText)")
   let plainText = ElastosKeypairCrypto.EciesDecrypt(privateKey: privKey, cipherText: cipherText!)
-  print("plainText: \(plainText)")
-  assert(originText == plainText)
+  let str = String(decoding: plainText!, as: UTF8.self)
+  print("plainText: \(str)")
+  assert(originText == str)
   
   print("============= end testCrypto ===========")
 }

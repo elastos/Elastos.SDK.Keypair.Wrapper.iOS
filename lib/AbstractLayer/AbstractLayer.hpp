@@ -53,9 +53,9 @@ char* AbstractLayer_SerializeMultiSignTransaction(const char* transaction);
 
 char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen);
 
-char* AbstractLayer_EciesEncrypt(const char* publicKey, const char* plainText);
+char* AbstractLayer_EciesEncrypt(const char* publicKey, const unsigned char* plainText, int len);
 
-char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText);
+unsigned char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText, int* outLen);
 
 void AbstractLayer_FreeBuf(void* buf);
 

@@ -129,16 +129,15 @@ char** AbstractLayer_GetSignedSigners(const char* transaction, int* outLen)
   return ret;
 }
 
-char* AbstractLayer_EciesEncrypt(const char* publicKey, const char* plainText)
+char* AbstractLayer_EciesEncrypt(const char* publicKey, const unsigned char* plainText, int len)
 {
-  char* ret = eciesEncrypt(publicKey, plainText);
+  char* ret = eciesEncrypt(publicKey, plainText, len);
   return ret;
 }
 
-char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText)
+unsigned char* AbstractLayer_EciesDecrypt(const char* privateKey, const char* cipherText, int* outLen)
 {
-  int len;
-  char* ret = eciesDecrypt(privateKey, cipherText, &len);
+  unsigned char* ret = eciesDecrypt(privateKey, cipherText, outLen);
   return ret;
 }
 
