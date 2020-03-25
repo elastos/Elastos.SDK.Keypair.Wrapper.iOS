@@ -12,7 +12,12 @@ open class ElastosKeypairDID {
   private init() {}
 
   public static func GetDid(publicKey: String) -> String? {
-    let address = AbstractLayer.GetDid(publicKey: publicKey)
-    return address
+    let did = AbstractLayer.GetDid(publicKey: publicKey)
+    return did
+  }
+
+  public static func GetDid(info: String) -> String? {
+    let did = AbstractLayer.GetDidByInfo(info: info)
+    return did
   }
 }

@@ -49,6 +49,12 @@ char* AbstractLayer_GetAddress(const char* publicKey)
 	return address;
 }
 
+char* AbstractLayer_GetAddressByInfo(const char* info)
+{
+  char* address = getAddressByInfo(info);
+  return address;
+}
+
 bool AbstractLayer_IsAddressValid(const char* address)
 {
 	bool valid = isAddressValid(address);
@@ -59,6 +65,12 @@ char* AbstractLayer_GetDid(const char* publicKey)
 {
 	char* did = getDid(publicKey);
 	return did;
+}
+
+char* AbstractLayer_GetDidByInfo(const char* info)
+{
+  char* did = getDidByInfo(info);
+  return did;
 }
 
 int AbstractLayer_Sign(const char* privateKey, const void* data, int len,

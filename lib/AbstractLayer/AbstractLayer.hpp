@@ -27,9 +27,13 @@ char* AbstractLayer_GetPublicKeyFromPrivateKey(const char* privateKey);
   
 char* AbstractLayer_GetAddress(const char* publicKey);
 
+char* AbstractLayer_GetAddressByInfo(const char* info);
+
 bool AbstractLayer_IsAddressValid(const char* address);
 
 char* AbstractLayer_GetDid(const char* publicKey);
+
+char* AbstractLayer_GetDidByInfo(const char* info);
 
 int AbstractLayer_Sign(const char* privateKey, const void* data, int len, void** signedData);
 

@@ -37,6 +37,11 @@ open class ElastosKeypair {
     return address
   }
 
+  public static func GetAddressByInfo(info: String) -> String? {
+    let address = AbstractLayer.GetAddressByInfo(info: info)
+    return address
+  }
+
   public static func IsAddressValid(address: String) -> Bool {
     let valid = AbstractLayer.IsAddressValid(address: address)
     return valid

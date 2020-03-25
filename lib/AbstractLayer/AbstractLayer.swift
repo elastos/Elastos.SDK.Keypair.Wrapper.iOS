@@ -94,6 +94,17 @@ open class AbstractLayer {
       return address
   }
 
+  public static func GetAddressByInfo(info: String?) -> String? {
+    guard info != nil else { return nil }
+    let infoPtr = String.ToUnsafeMutablePointer(data: info)
+
+      let addressPtr = AbstractLayer_GetAddressByInfo(infoPtr)
+      let address = String.FromUnsafeMutablePointer(data: addressPtr)
+      AbstractLayer_FreeBuf(addressPtr)
+
+      return address
+  }
+
   public static func IsAddressValid(address: String?) -> Bool {
     guard address != nil else { return false }
     let addressPtr = String.ToUnsafeMutablePointer(data: address)
@@ -111,6 +122,17 @@ open class AbstractLayer {
     let did = String.FromUnsafeMutablePointer(data: didPtr)
     AbstractLayer_FreeBuf(didPtr)
     
+    return did
+  }
+
+  public static func GetDidByInfo(info: String?) -> String? {
+    guard info != nil else { return nil }
+    let infoPtr = String.ToUnsafeMutablePointer(data: info)
+
+    let didPtr = AbstractLayer_GetDid(infoPtr)
+    let did = String.FromUnsafeMutablePointer(data: didPtr)
+    AbstractLayer_FreeBuf(didPtr)
+
     return did
   }
   
