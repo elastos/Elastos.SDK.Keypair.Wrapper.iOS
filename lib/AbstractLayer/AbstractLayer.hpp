@@ -65,6 +65,23 @@ void AbstractLayer_FreeBuf(void* buf);
 
 void AbstractLayer_FreeStringArray(char** buf);
   
+char* AbstractLayer_FileCoin_GetSinglePublicKey(const void* seed, int seedLen);
+
+char* AbstractLayer_FileCoin_GetSinglePrivateKey(const void* seed, int seedLen);
+
+char* AbstractLayer_FileCoin_GetPublicKeyFromPrivateKey(const char* privateKey);
+
+char* AbstractLayer_FileCoin_GetAddress(const char* publicKey);
+
+int AbstractLayer_FileCoin_Sign(const char* privateKey, const void* data, int len,
+                                void** signedData);
+
+bool AbstractLayer_FileCoin_Verify(const char* publicKey, const void* data, int len,
+                                   const void* signedData, int signedLen);
+
+char* AbstractLayer_FileCoin_GenerateRawTransaction(const char* privateKey, const char* transaction);
+
+
 #ifdef __cplusplus
 }
 #endif

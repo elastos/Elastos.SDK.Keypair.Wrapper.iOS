@@ -9,6 +9,7 @@
 #include "AbstractLayer.hpp"
 
 #include <Elastos.SDK.Keypair.C/Elastos.Wallet.Utility.h>
+#include <Elastos.SDK.Keypair.C/FileCoin.hpp>
 #include <memory>
 
 char* AbstractLayer_GenerateMnemonic(const char* language, const char* words)
@@ -161,4 +162,49 @@ void AbstractLayer_FreeBuf(void* buf)
 void AbstractLayer_FreeStringArray(char** buf)
 {
   free(buf);
+}
+
+char* AbstractLayer_FileCoin_GetSinglePublicKey(const void* seed, int seedLen)
+{
+  char* pubkey = FileCoin::GetSinglePublicKey(seed, seedLen);
+  return pubkey;
+}
+
+char* AbstractLayer_FileCoin_GetSinglePrivateKey(const void* seed, int seedLen)
+{
+  char* privkey = FileCoin::GetSinglePrivateKey(seed, seedLen);
+  return privkey;
+}
+
+
+char* AbstractLayer_FileCoin_GetPublicKeyFromPrivateKey(const char* privateKey)
+{
+  char* pubkey = FileCoin::GetPublicKeyFromPrivateKey(privateKey);
+  return pubkey;
+}
+
+char* AbstractLayer_FileCoin_GetAddress(const char* publicKey)
+{
+  char* address = FileCoin::GetAddress(publicKey);
+  return address;
+}
+
+int AbstractLayer_FileCoin_Sign(const char* privateKey, const void* data, int len,
+                                void** signedData)
+{
+  int ret = FileCoin::Sign(privateKey, data, len, signedData);
+  return ret;
+}
+
+bool AbstractLayer_FileCoin_Verify(const char* publicKey, const void* data, int len,
+                                   const void* signedData, int signedLen)
+{
+  bool valid = FileCoin::Verify(publicKey, data, len, signedData, signedLen);
+  return valid;
+}
+
+char* AbstractLayer_FileCoin_GenerateRawTransaction(const char* privateKey, const char* transaction)
+{
+  char* rawTx = FileCoin::GenerateRawTransaction(privateKey, transaction);
+  return rawTx;
 }

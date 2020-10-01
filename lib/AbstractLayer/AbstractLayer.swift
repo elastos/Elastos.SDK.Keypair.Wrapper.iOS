@@ -306,4 +306,107 @@ open class AbstractLayer {
     
     return ret
   }
+  
+  
+  open class FileCoin {
+    private init() {}
+
+    public static func GetSinglePublicKey(seed: Data?, seedLen: Int) -> String? {
+      guard seed != nil else { return nil }
+      let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
+
+        let pubKeyPtr = AbstractLayer_FileCoin_GetSinglePublicKey(seedPtr, Int32(seedLen))
+        let pubKey = String.FromUnsafeMutablePointer(data: pubKeyPtr)
+        AbstractLayer_FreeBuf(pubKeyPtr)
+
+        return pubKey
+    }
+
+    public static func GetSinglePrivateKey(seed: Data?, seedLen: Int) -> String? {
+      guard seed != nil else { return nil }
+      let seedPtr = Data.ToUnsafeMutablePointer(data: seed)
+
+        let privKeyPtr = AbstractLayer_FileCoin_GetSinglePrivateKey(seedPtr, Int32(seedLen))
+        let privKey = String.FromUnsafeMutablePointer(data: privKeyPtr)
+        AbstractLayer_FreeBuf(privKeyPtr)
+
+        return privKey
+    }
+
+    public static func GetPublicKeyFromPrivateKey(privateKey: String?) -> String? {
+      guard privateKey != nil else { return nil }
+
+      let privKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+
+        let pubKeyPtr = AbstractLayer_FileCoin_GetPublicKeyFromPrivateKey(privKeyPtr)
+
+        let pubKey = String.FromUnsafeMutablePointer(data: pubKeyPtr)
+
+        return pubKey
+    }
+    
+    public static func GetAddress(publicKey: String?) -> String? {
+      guard publicKey != nil else { return nil }
+      let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
+
+        let addressPtr = AbstractLayer_FileCoin_GetAddress(pubKeyPtr)
+        let address = String.FromUnsafeMutablePointer(data: addressPtr)
+        AbstractLayer_FreeBuf(addressPtr)
+
+        return address
+    }
+    
+    public static func Sign(privateKey: String?, data: Data, len: Int, signedData: inout Data) -> Int {
+      guard privateKey != nil else { return -1 }
+
+      let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+        let dataPtr = Data.ToUnsafeMutablePointer(data: data)
+
+        var signedDataPtr: UnsafeMutableRawPointer? = nil
+        let signedDataLen = AbstractLayer_FileCoin_Sign(privateKeyPtr, dataPtr, Int32(len), &signedDataPtr)
+        guard signedDataLen > 0 && signedDataPtr != nil else {
+          return Int(signedDataLen)
+        }
+
+      let signedDataData = Data.FromUnsafeMutablePointer(data: signedDataPtr!, size: Int(signedDataLen))
+        AbstractLayer_FreeBuf(signedDataPtr)
+
+        signedData.removeAll()
+        signedData.append(signedDataData!)
+
+        return Int(signedDataLen)
+    }
+    
+    public static func GenerateRawTransaction(privateKey: String?, transaction: String) -> String? {
+        guard privateKey != nil else { return nil }
+
+        let privateKeyPtr = String.ToUnsafeMutablePointer(data: privateKey)
+        let transactionPtr = String.ToUnsafeMutablePointer(data: transaction)
+      
+        let rawTxPtr = AbstractLayer_FileCoin_GenerateRawTransaction(privateKeyPtr, transactionPtr)
+
+        let rawTx = String.FromUnsafeMutablePointer(data: rawTxPtr)
+        AbstractLayer_FreeBuf(rawTxPtr)
+
+        return rawTx
+    }
+      
+    public static func Verify(publicKey: String?, data: Data, len: Int, signedData:Data,signedLen:Int) -> Bool {
+          
+          guard publicKey != nil else { return false }
+          let pubKeyPtr = String.ToUnsafeMutablePointer(data: publicKey)
+          let dataPtr = Data.ToUnsafeMutablePointer(data: data)
+          let signedDataPtr = Data.ToUnsafeMutablePointer(data: signedData)
+          
+          let signedResult = AbstractLayer_FileCoin_Verify(publicKey, dataPtr, Int32(len), signedDataPtr,Int32(signedLen))
+          
+          AbstractLayer_FreeBuf(pubKeyPtr)
+          AbstractLayer_FreeBuf(dataPtr)
+          AbstractLayer_FreeBuf(signedDataPtr)
+          
+          return Bool(signedResult)
+    }
+
+  }
+
 }

@@ -22,6 +22,9 @@ class ViewController: UIViewController {
     testSignTxData()
     testCosignTxData()
     testCrypto()
+    
+    testFileCoin()
+    testFileCoinTx()
   }
 
 
@@ -113,10 +116,10 @@ func testSignTxData() {
                   + "\"index\":0,\"address\":\"EeniFrrhuFgQXRrQXsiM1V4Amdsk4vfkVc\"}],"
                   + "\"Outputs\":[{\"address\":\"EbxU18T3M9ufnrkRY7NLt6sKyckDW4VAsA\","
                   + "\"amount\":2000000}]}]}";
-  var rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction)
-  print("rawTx: \(rawTx)")
+//  var rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction)
+//  print("rawTx: \(rawTx)")
   
-  rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction, assertId: nil)
+//  rawTx = ElastosKeypairSign.GenerateRawTransaction(transaction: transaction, assertId: nil)
   
   print("============= end testSignTxData ===========")
 }
@@ -181,6 +184,87 @@ func testCrypto() {
   
   print("============= end testCrypto ===========")
 }
+
+func testFileCoin() {
+  print("============= start testFileCoin ===========")
+
+  var mnemonic = "voice kingdom wall sword pair unusual artefact opera keen aware stay game";
+  print("mnemonic: \(mnemonic)")
+  
+  var seed = Data()
+  let seedLen = ElastosKeypair.GetSeedFromMnemonic(seed: &seed,
+                                                   mnemonic: mnemonic,
+                                                   mnemonicPassword: "")
+  let seedStr = seed.hexEncodedString()
+  print("seedStr: \(seedStr) seedLen: \(seedLen)")
+  
+  
+  let privKey = ElastosKeypairFileCoin.GetSinglePrivateKey(seed: seed, seedLen: seedLen)!
+  print("privKey: \(privKey)")
+  let pubKey = ElastosKeypairFileCoin.GetSinglePublicKey(seed: seed, seedLen: seedLen)
+  print("pubKey: \(pubKey)")
+  let pubKeyVerify = ElastosKeypairFileCoin.GetPublicKeyFromPrivateKey(privateKey: privKey)
+  print("pubKeyVerify: \(pubKeyVerify)")
+  assert(pubKeyVerify == pubKey)
+  
+  let address = ElastosKeypairFileCoin.GetAddress(publicKey: pubKey!)
+  print("address: \(address)")
+  
+  let data = Data([0, 1, 2, 3, 4, 5])
+  var signedData = Data()
+  let signedLen = ElastosKeypairFileCoin.Sign(privateKey: privKey,
+                                              data: data, len: data.count,
+                                              signedData: &signedData)
+  print("signedLen: \(signedLen)")
+  
+  let verified = ElastosKeypairFileCoin.Verify(publicKey: pubKey,
+                                               data: data, len: data.count,
+                                               signedData: signedData, signedLen: signedData.count)
+  print("verified: \(verified)")
+  
+  print("============= end testFileCoin ===========")
+  
+  return
+}
+
+func testFileCoinTx() {
+  print("============= start testFileCoinTx ===========")
+
+  var mnemonic = "voice kingdom wall sword pair unusual artefact opera keen aware stay game";
+  print("mnemonic: \(mnemonic)")
+  
+  var seed = Data()
+  let seedLen = ElastosKeypair.GetSeedFromMnemonic(seed: &seed,
+                                                   mnemonic: mnemonic,
+                                                   mnemonicPassword: "")
+  
+  let privKey = ElastosKeypairFileCoin.GetSinglePrivateKey(seed: seed, seedLen: seedLen)!
+  print("privKey: \(privKey)")
+  let pubKey = ElastosKeypairFileCoin.GetSinglePublicKey(seed: seed, seedLen: seedLen)
+  print("pubKey: \(pubKey)")
+  let address = ElastosKeypairFileCoin.GetAddress(publicKey: pubKey!)
+  print("address: \(address)")
+  
+  let tx = "{"
+      + "\"to\": \"t3xcnpgqifiwjivr65ylnxrvk3qjxb2hu5wz5b26z6kzr7z5shu4bicfwhv5vyoxyfiy6pjpj44cwndtmwe4ka\","
+      + "\"from\": \"" + address! + "\","
+      + "\"value\": \"1\","
+      + "\"gasPremium\": \"1000000\","
+      + "\"gasFeeCap\": \"1000000\","
+      + "\"gasLimit\": 80000000,"
+      + "\"method\": 0,"
+      + "\"nonce\": 0,"
+      + "\"params\": \"\""
+      + "}";
+  let txRaw = ElastosKeypairFileCoin.GenerateRawTransaction(privateKey: privKey, transaction: tx)
+  print("txRaw: \(txRaw)")
+  
+  print("============= end testFileCoinTx ===========")
+  
+  return
+}
+
+
 
 extension Data {
   func hexEncodedString() -> String {
