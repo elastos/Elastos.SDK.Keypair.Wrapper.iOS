@@ -32,6 +32,11 @@ open class ElastosKeypairFileCoin {
     return address
   }
   
+  public static func IsAddressValid(address: String) -> Bool {
+    let valid = AbstractLayer.FileCoin.IsAddressValid(address: address)
+    return valid
+  }
+  
   public static func Sign(privateKey: String?, data: Data, len: Int, signedData: inout Data) -> Int {
     let signedDataLen = AbstractLayer.FileCoin.Sign(privateKey: privateKey,
                                                     data: data,

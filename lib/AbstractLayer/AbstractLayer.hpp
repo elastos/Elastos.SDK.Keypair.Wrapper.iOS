@@ -73,6 +73,8 @@ char* AbstractLayer_FileCoin_GetPublicKeyFromPrivateKey(const char* privateKey);
 
 char* AbstractLayer_FileCoin_GetAddress(const char* publicKey);
 
+bool AbstractLayer_FileCoin_IsAddressValid(const char* address);
+
 int AbstractLayer_FileCoin_Sign(const char* privateKey, const void* data, int len,
                                 void** signedData);
 

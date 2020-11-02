@@ -356,6 +356,15 @@ open class AbstractLayer {
         return address
     }
     
+    public static func IsAddressValid(address: String?) -> Bool {
+      guard address != nil else { return false }
+      let addrPtr = String.ToUnsafeMutablePointer(data: address)
+
+        let valid = AbstractLayer_FileCoin_IsAddressValid(addrPtr)
+
+        return valid
+    }
+    
     public static func Sign(privateKey: String?, data: Data, len: Int, signedData: inout Data) -> Int {
       guard privateKey != nil else { return -1 }
 

@@ -189,6 +189,13 @@ char* AbstractLayer_FileCoin_GetAddress(const char* publicKey)
   return address;
 }
 
+
+bool AbstractLayer_FileCoin_IsAddressValid(const char* address)
+{
+  bool valid = FileCoin::IsAddressValid(address);
+  return valid;
+}
+
 int AbstractLayer_FileCoin_Sign(const char* privateKey, const void* data, int len,
                                 void** signedData)
 {
